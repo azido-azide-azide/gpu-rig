@@ -76,18 +76,29 @@ export default {
   id: 'gpu-rig',
   name: 'GPU Rig',
   register(ctx) {
+    // Declarative `data` contributions arrive in the bar as real StatusbarItems,
+    // so `toggleLabel` makes each chip a checkbox row in the ribbon's right-click
+    // "Status bar items" menu (visibility persists under the item id).
     ctx.registerMany([
       {
         id: 'model',
         area: STATUSBAR_AREAS.right,
         order: 120,
-        render: () => jsx(Chip, { ctx, kind: 'model' }),
+        data: {
+          id: 'gpu-rig.model',
+          toggleLabel: 'GPU model',
+          render: () => jsx(Chip, { ctx, kind: 'model' }),
+        },
       },
       {
         id: 'util',
         area: STATUSBAR_AREAS.right,
         order: 125,
-        render: () => jsx(Chip, { ctx, kind: 'util' }),
+        data: {
+          id: 'gpu-rig.util',
+          toggleLabel: 'GPU utilization',
+          render: () => jsx(Chip, { ctx, kind: 'util' }),
+        },
       },
     ])
   },
