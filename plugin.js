@@ -44,7 +44,7 @@ function Chip({ ctx, kind }) {
           .filter(Boolean)
           .join('\n')
       }
-      color = m ? 'var(--ui-text-secondary)' : 'var(--ui-text-quaternary)'
+      color = m ? 'inherit' : 'var(--ui-text-quaternary)'
     } else {
       const g = rig.gpus
       if (!g) {
@@ -58,7 +58,7 @@ function Chip({ ctx, kind }) {
         tip = g
           .map(x => `GPU${x.index}: ${x.util}% core · ${Math.round(x.mem_mib / 1024)} GiB VRAM used`)
           .join('\n')
-        color = g.some(x => x.util >= 95) ? 'var(--ui-accent)' : 'var(--ui-text-secondary)'
+        color = g.some(x => x.util >= 95) ? 'var(--ui-accent)' : 'inherit'
       }
     }
   }
